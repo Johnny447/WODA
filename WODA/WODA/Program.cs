@@ -16,7 +16,7 @@ namespace WODA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WODAApplicationForm());
+            Application.Run(new Form1());
         }
     }
 }
