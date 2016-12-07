@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B960C191-B496-4647-95E4-CA4C700D94A4}</ProjectGuid>
+    <ProjectGuid>{21FF7982-920F-4A95-81CC-59FD8CC75641}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WODA</RootNamespace>
