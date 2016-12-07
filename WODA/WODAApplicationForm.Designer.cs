@@ -35,20 +35,20 @@
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.dateOfBirthLabel = new System.Windows.Forms.Label();
             this.applicantDetailsGroup = new System.Windows.Forms.GroupBox();
+            this.yourGenderLabel = new System.Windows.Forms.Label();
             this.yourGenderList = new System.Windows.Forms.ComboBox();
             this.theirGenderList = new System.Windows.Forms.ComboBox();
-            this.yourGenderLabel = new System.Windows.Forms.Label();
             this.theirGenderLabel = new System.Windows.Forms.Label();
             this.partnerDetailsGroup = new System.Windows.Forms.GroupBox();
-            this.minimumAgeSpinner = new System.Windows.Forms.NumericUpDown();
-            this.maximumAgeSpinner = new System.Windows.Forms.NumericUpDown();
-            this.minimumAgeLabel = new System.Windows.Forms.Label();
             this.maximumAgeLabel = new System.Windows.Forms.Label();
+            this.minimumAgeLabel = new System.Windows.Forms.Label();
+            this.maximumAgeSpinner = new System.Windows.Forms.NumericUpDown();
+            this.minimumAgeSpinner = new System.Windows.Forms.NumericUpDown();
             this.applyNowButton = new System.Windows.Forms.Button();
             this.applicantDetailsGroup.SuspendLayout();
             this.partnerDetailsGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minimumAgeSpinner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximumAgeSpinner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimumAgeSpinner)).BeginInit();
             this.SuspendLayout();
             // 
             // firstNameTextbox
@@ -119,6 +119,15 @@
             this.applicantDetailsGroup.TabStop = false;
             this.applicantDetailsGroup.Text = "Your Details";
             // 
+            // yourGenderLabel
+            // 
+            this.yourGenderLabel.AutoSize = true;
+            this.yourGenderLabel.Location = new System.Drawing.Point(16, 155);
+            this.yourGenderLabel.Name = "yourGenderLabel";
+            this.yourGenderLabel.Size = new System.Drawing.Size(67, 13);
+            this.yourGenderLabel.TabIndex = 9;
+            this.yourGenderLabel.Text = "Your Gender";
+            // 
             // yourGenderList
             // 
             this.yourGenderList.FormattingEnabled = true;
@@ -140,15 +149,6 @@
             this.theirGenderList.Name = "theirGenderList";
             this.theirGenderList.Size = new System.Drawing.Size(142, 21);
             this.theirGenderList.TabIndex = 8;
-            // 
-            // yourGenderLabel
-            // 
-            this.yourGenderLabel.AutoSize = true;
-            this.yourGenderLabel.Location = new System.Drawing.Point(16, 155);
-            this.yourGenderLabel.Name = "yourGenderLabel";
-            this.yourGenderLabel.Size = new System.Drawing.Size(67, 13);
-            this.yourGenderLabel.TabIndex = 9;
-            this.yourGenderLabel.Text = "Your Gender";
             // 
             // theirGenderLabel
             // 
@@ -174,22 +174,23 @@
             this.partnerDetailsGroup.TabStop = false;
             this.partnerDetailsGroup.Text = "Partner Details";
             // 
-            // minimumAgeSpinner
+            // maximumAgeLabel
             // 
-            this.minimumAgeSpinner.Location = new System.Drawing.Point(98, 75);
-            this.minimumAgeSpinner.Minimum = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
-            this.minimumAgeSpinner.Name = "minimumAgeSpinner";
-            this.minimumAgeSpinner.Size = new System.Drawing.Size(72, 20);
-            this.minimumAgeSpinner.TabIndex = 11;
-            this.minimumAgeSpinner.Value = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
+            this.maximumAgeLabel.AutoSize = true;
+            this.maximumAgeLabel.Location = new System.Drawing.Point(18, 114);
+            this.maximumAgeLabel.Name = "maximumAgeLabel";
+            this.maximumAgeLabel.Size = new System.Drawing.Size(73, 13);
+            this.maximumAgeLabel.TabIndex = 14;
+            this.maximumAgeLabel.Text = "Maximum Age";
+            // 
+            // minimumAgeLabel
+            // 
+            this.minimumAgeLabel.AutoSize = true;
+            this.minimumAgeLabel.Location = new System.Drawing.Point(18, 75);
+            this.minimumAgeLabel.Name = "minimumAgeLabel";
+            this.minimumAgeLabel.Size = new System.Drawing.Size(70, 13);
+            this.minimumAgeLabel.TabIndex = 13;
+            this.minimumAgeLabel.Text = "Minimum Age";
             // 
             // maximumAgeSpinner
             // 
@@ -208,23 +209,22 @@
             0,
             0});
             // 
-            // minimumAgeLabel
+            // minimumAgeSpinner
             // 
-            this.minimumAgeLabel.AutoSize = true;
-            this.minimumAgeLabel.Location = new System.Drawing.Point(18, 75);
-            this.minimumAgeLabel.Name = "minimumAgeLabel";
-            this.minimumAgeLabel.Size = new System.Drawing.Size(70, 13);
-            this.minimumAgeLabel.TabIndex = 13;
-            this.minimumAgeLabel.Text = "Minimum Age";
-            // 
-            // maximumAgeLabel
-            // 
-            this.maximumAgeLabel.AutoSize = true;
-            this.maximumAgeLabel.Location = new System.Drawing.Point(18, 114);
-            this.maximumAgeLabel.Name = "maximumAgeLabel";
-            this.maximumAgeLabel.Size = new System.Drawing.Size(73, 13);
-            this.maximumAgeLabel.TabIndex = 14;
-            this.maximumAgeLabel.Text = "Maximum Age";
+            this.minimumAgeSpinner.Location = new System.Drawing.Point(98, 75);
+            this.minimumAgeSpinner.Minimum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            this.minimumAgeSpinner.Name = "minimumAgeSpinner";
+            this.minimumAgeSpinner.Size = new System.Drawing.Size(72, 20);
+            this.minimumAgeSpinner.TabIndex = 11;
+            this.minimumAgeSpinner.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
             // 
             // applyNowButton
             // 
@@ -247,12 +247,13 @@
             this.Name = "WODAApplicationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome to WODA";
+            this.Load += new System.EventHandler(this.WODAApplicationForm_Load);
             this.applicantDetailsGroup.ResumeLayout(false);
             this.applicantDetailsGroup.PerformLayout();
             this.partnerDetailsGroup.ResumeLayout(false);
             this.partnerDetailsGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minimumAgeSpinner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximumAgeSpinner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimumAgeSpinner)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -26,5 +26,10 @@ namespace WODA
         {
 
         }
+
+        private void WODAApplicationForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
