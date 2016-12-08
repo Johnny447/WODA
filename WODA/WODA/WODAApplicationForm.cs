@@ -31,5 +31,47 @@ namespace WODA
         {
 
         }
+
+        private void applyNowButton_Click(object sender, EventArgs e)
+        {
+            //this method displays a message when the user clicks the button
+            MessageBox.Show
+                (
+                    "Welcome to WODA " 
+                        + firstNameTextbox.Text 
+                        + " " 
+                        + lastNameTextbox.Text,
+                    "WODA Application",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+        }
+
+        private void clearFormButton_Click(object sender, EventArgs e)
+        {
+            //clear the first and last name textboxes
+            firstNameTextbox.Clear();
+            lastNameTextbox.Clear();
+
+            //clear text from gender comboboxes
+            yourGenderList.ResetText();
+            theirGenderList.ResetText();
+
+            //reset age boxes
+            minimumAgeSpinner.Value = 18;
+            maximumAgeSpinner.Value = 100;
+        }
+
+        private void quitButton_Click(object sender, EventArgs e)
+        {
+            //form disappear
+            this.Visible = false;
+
+            //message appears
+            MessageBox.Show("Bye bye");
+
+            //quit application
+            Application.Exit();
+        }
     }
 }

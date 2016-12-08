@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WODA
 {
-    public partial class Form1 : Form
+    public partial class WODAApplicationForm : Form
     {
-        public Form1()
+        public WODAApplicationForm()
         {
             InitializeComponent();
         }

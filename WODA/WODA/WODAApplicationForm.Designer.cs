@@ -45,6 +45,8 @@
             this.maximumAgeSpinner = new System.Windows.Forms.NumericUpDown();
             this.minimumAgeSpinner = new System.Windows.Forms.NumericUpDown();
             this.applyNowButton = new System.Windows.Forms.Button();
+            this.clearFormButton = new System.Windows.Forms.Button();
+            this.quitButton = new System.Windows.Forms.Button();
             this.applicantDetailsGroup.SuspendLayout();
             this.partnerDetailsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maximumAgeSpinner)).BeginInit();
@@ -234,6 +236,27 @@
             this.applyNowButton.TabIndex = 8;
             this.applyNowButton.Text = "Apply Now";
             this.applyNowButton.UseVisualStyleBackColor = true;
+            this.applyNowButton.Click += new System.EventHandler(this.applyNowButton_Click);
+            // 
+            // clearFormButton
+            // 
+            this.clearFormButton.Location = new System.Drawing.Point(315, 252);
+            this.clearFormButton.Name = "clearFormButton";
+            this.clearFormButton.Size = new System.Drawing.Size(75, 23);
+            this.clearFormButton.TabIndex = 9;
+            this.clearFormButton.Text = "Clear Form";
+            this.clearFormButton.UseVisualStyleBackColor = true;
+            this.clearFormButton.Click += new System.EventHandler(this.clearFormButton_Click);
+            // 
+            // quitButton
+            // 
+            this.quitButton.Location = new System.Drawing.Point(196, 252);
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(75, 23);
+            this.quitButton.TabIndex = 10;
+            this.quitButton.Text = "Quit";
+            this.quitButton.UseVisualStyleBackColor = true;
+            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
             // 
             // WODAApplicationForm
             // 
@@ -241,6 +264,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(547, 301);
+            this.Controls.Add(this.quitButton);
+            this.Controls.Add(this.clearFormButton);
             this.Controls.Add(this.applyNowButton);
             this.Controls.Add(this.partnerDetailsGroup);
             this.Controls.Add(this.applicantDetailsGroup);
@@ -277,6 +302,8 @@
         private System.Windows.Forms.NumericUpDown maximumAgeSpinner;
         private System.Windows.Forms.NumericUpDown minimumAgeSpinner;
         private System.Windows.Forms.Button applyNowButton;
+        private System.Windows.Forms.Button clearFormButton;
+        private System.Windows.Forms.Button quitButton;
     }
 }
 
