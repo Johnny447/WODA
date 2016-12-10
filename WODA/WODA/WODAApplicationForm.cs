@@ -12,6 +12,8 @@ namespace WODA
 {
     public partial class WODAApplicationForm : Form
     {
+        private string fullName = string.Empty;
+
         public WODAApplicationForm()
         {
             InitializeComponent();
@@ -35,16 +37,33 @@ namespace WODA
         private void applyNowButton_Click(object sender, EventArgs e)
         {
             //this method displays a message when the user clicks the button
+            string messageText = string.Empty;
+            byte minimumAge = 0;
+            byte maximumAge = 0;
+            byte ageRange = 0;
+            DateTime dob = dateOfBirthPicker.Value;
+
+            fullName = firstNameTextbox.Text + " " + lastNameTextbox.Text;
+
+            minimumAge = (byte)minimumAgeSpinner.Value;
+            maximumAge = Convert.ToByte(maximumAgeSpinner.Value);
+
+            ageRange = (byte)(maximumAge - minimumAge);
+
+            messageText = "Welcome to WODA " + fullName;
+            messageText += "\nYou are a " + yourGenderList.Text;
+            messageText += "\nYou are looking for a " + theirGenderList.Text;
+            messageText += "\nYour partner's age range is " + ageRange;
+            messageText += "\nYou were born on " + dob.ToString("dddd d MMMM yyyy");
+
             MessageBox.Show
                 (
-                    "Welcome to WODA " 
-                        + firstNameTextbox.Text 
-                        + " " 
-                        + lastNameTextbox.Text,
+                    messageText,
                     "WODA Application",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+
         }
 
         private void clearFormButton_Click(object sender, EventArgs e)
@@ -68,7 +87,7 @@ namespace WODA
             this.Visible = false;
 
             //message appears
-            MessageBox.Show("Bye bye");
+            MessageBox.Show("Bye bye " + fullName);
 
             //quit application
             Application.Exit();
