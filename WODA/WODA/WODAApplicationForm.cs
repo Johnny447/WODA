@@ -42,8 +42,61 @@ namespace WODA
             byte maximumAge = 0;
             byte ageRange = 0;
             DateTime dob = dateOfBirthPicker.Value;
+            int age = 0;
+            string ageCategory = string.Empty;
+            string yourGender = string.Empty;
+            string partnerGender = string.Empty;
+
+            if (firstNameTextbox.Text == string.Empty)
+            {
+                firstNameTextbox.BackColor = Color.Pink;
+                firstNameLabel.ForeColor = Color.Red;
+                firstNameTextbox.Focus();
+                return;
+            }
+            else
+            {
+                firstNameTextbox.BackColor = Color.White;
+                firstNameLabel.ForeColor = Color.Black;
+            }
+
+            if (lastNameTextbox.Text == String.Empty)
+            {
+                lastNameTextbox.BackColor = Color.Pink;
+                lastNameLabel.ForeColor = Color.Red;
+                lastNameTextbox.Focus();
+            }
+            else
+            {
+                lastNameTextbox.BackColor = Color.White;
+                lastNameLabel.ForeColor = Color.Black;
+            }
+
 
             fullName = firstNameTextbox.Text + " " + lastNameTextbox.Text;
+
+            age = DateTime.Today.Year - dob.Year;
+
+            if (age < 18)
+            {
+                MessageBox.Show("You're too young");
+                return;
+            }
+            else if (age < 30)
+            {
+                ageCategory = "Young";
+            }
+            else if (age < 55)
+            {
+                ageCategory = "Middle Age";
+            }
+            else
+            {
+                ageCategory = "Old";
+            }
+
+            yourGender = (yourGenderList.Text == "Male") ? "man" : "woman";
+            partnerGender = (theirGenderList.Text == "Male") ? "man" : "woman";
 
             minimumAge = (byte)minimumAgeSpinner.Value;
             maximumAge = Convert.ToByte(maximumAgeSpinner.Value);
@@ -51,10 +104,12 @@ namespace WODA
             ageRange = (byte)(maximumAge - minimumAge);
 
             messageText = "Welcome to WODA " + fullName;
-            messageText += "\nYou are a " + yourGenderList.Text;
-            messageText += "\nYou are looking for a " + theirGenderList.Text;
+            messageText += "\nYou are a " + yourGender;
+            messageText += "\nYou are looking for a " + partnerGender;
             messageText += "\nYour partner's age range is " + ageRange;
             messageText += "\nYou were born on " + dob.ToString("dddd d MMMM yyyy");
+            messageText += "\n your age is " + age;
+            messageText += "\n your age category is " + ageCategory;
 
             MessageBox.Show
                 (
