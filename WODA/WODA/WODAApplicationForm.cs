@@ -70,10 +70,13 @@ namespace WODA
             }
 
             ageCategory = calculateAgeCategory(age: age,oldAgeThreshold:60);
-            
 
-            yourGender = (yourGenderList.Text == "Male") ? "man" : "woman";
-            partnerGender = (theirGenderList.Text == "Male") ? "man" : "woman";
+
+            //yourGender = (yourGenderList.Text == "Male") ? "man" : "woman";
+            //partnerGender = (theirGenderList.Text == "Male") ? "man" : "woman";
+
+            yourGender = calculateGender(yourGenderList.Text);
+            partnerGender = calculateGender(theirGenderList.Text);
 
             minimumAge = (byte)minimumAgeSpinner.Value;
             maximumAge = Convert.ToByte(maximumAgeSpinner.Value);
@@ -203,5 +206,27 @@ namespace WODA
                 return true;
             }
         }
+
+        private string calculateGender(string gender)
+        {
+            string manOrWoman = string.Empty;
+
+            switch (gender)
+            {
+                case "Male":
+                case "M":
+                case "m":
+                case "male":
+                    return "man";
+                case "Female":
+                    return "woman";
+                default:
+                    return "invalid choice";
+            }
+
+
+        }
+
+
     }
 }
