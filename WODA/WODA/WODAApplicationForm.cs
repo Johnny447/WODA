@@ -12,7 +12,7 @@ namespace WODA
 {
     public partial class WODAApplicationForm : Form
     {
-        private string fullName = string.Empty;
+        
 
         public WODAApplicationForm()
         {
@@ -47,53 +47,30 @@ namespace WODA
             string yourGender = string.Empty;
             string partnerGender = string.Empty;
 
-            if (firstNameTextbox.Text == string.Empty)
-            {
-                firstNameTextbox.BackColor = Color.Pink;
-                firstNameLabel.ForeColor = Color.Red;
-                firstNameTextbox.Focus();
+            if (checkValueFilledIn(firstNameTextbox, firstNameLabel) == false)
                 return;
-            }
-            else
-            {
-                firstNameTextbox.BackColor = Color.White;
-                firstNameLabel.ForeColor = Color.Black;
-            }
 
-            if (lastNameTextbox.Text == String.Empty)
-            {
-                lastNameTextbox.BackColor = Color.Pink;
-                lastNameLabel.ForeColor = Color.Red;
-                lastNameTextbox.Focus();
-            }
-            else
-            {
-                lastNameTextbox.BackColor = Color.White;
-                lastNameLabel.ForeColor = Color.Black;
-            }
+            if (checkValueFilledIn(lastNameTextbox, lastNameLabel) == false)
+                return;
 
+            if (!checkValueFilledIn(yourGenderList, yourGenderLabel))
+                return;
 
-            fullName = firstNameTextbox.Text + " " + lastNameTextbox.Text;
+            if (!checkValueFilledIn(theirGenderList, theirGenderLabel))
+                return;
 
-            age = DateTime.Today.Year - dob.Year;
+            getFullName();
+
+            age = calculateAge(dob);
 
             if (age < 18)
             {
                 MessageBox.Show("You're too young");
                 return;
             }
-            else if (age < 30)
-            {
-                ageCategory = "Young";
-            }
-            else if (age < 55)
-            {
-                ageCategory = "Middle Age";
-            }
-            else
-            {
-                ageCategory = "Old";
-            }
+
+            ageCategory = calculateAgeCategory(age: age,oldAgeThreshold:60);
+            
 
             yourGender = (yourGenderList.Text == "Male") ? "man" : "woman";
             partnerGender = (theirGenderList.Text == "Male") ? "man" : "woman";
@@ -103,7 +80,7 @@ namespace WODA
 
             ageRange = (byte)(maximumAge - minimumAge);
 
-            messageText = "Welcome to WODA " + fullName;
+            messageText = "Welcome to WODA " + getFullName();
             messageText += "\nYou are a " + yourGender;
             messageText += "\nYou are looking for a " + partnerGender;
             messageText += "\nYour partner's age range is " + ageRange;
@@ -119,9 +96,17 @@ namespace WODA
                     MessageBoxIcon.Information
                 );
 
+            resetApplicationForm();
+
         }
 
         private void clearFormButton_Click(object sender, EventArgs e)
+        {
+            resetApplicationForm();
+
+        }
+
+        private void resetApplicationForm()
         {
             //clear the first and last name textboxes
             firstNameTextbox.Clear();
@@ -134,6 +119,9 @@ namespace WODA
             //reset age boxes
             minimumAgeSpinner.Value = 18;
             maximumAgeSpinner.Value = 100;
+
+            //reset date of birth to today
+            dateOfBirthPicker.Value = DateTime.Today;
         }
 
         private void quitButton_Click(object sender, EventArgs e)
@@ -142,10 +130,78 @@ namespace WODA
             this.Visible = false;
 
             //message appears
-            MessageBox.Show("Bye bye " + fullName);
+            MessageBox.Show("Bye bye " + getFullName());
 
             //quit application
             Application.Exit();
+        }
+
+
+        
+
+        private string getFullName()
+        {
+            return firstNameTextbox.Text + " " + lastNameTextbox.Text;
+        }
+
+        private int calculateAge(DateTime dateOfBirth)
+        {
+            int differenceInYears = DateTime.Today.Year - dateOfBirth.Year;
+            DateTime currentBirthday = dateOfBirth.AddYears(differenceInYears);
+
+            if (currentBirthday > DateTime.Today) differenceInYears --;
+
+            return differenceInYears;
+        }
+
+        private string calculateAgeCategory(int age, int middleAgeThreshold = 30, int oldAgeThreshold = 55)
+        {
+            if (age < middleAgeThreshold)
+            {
+                return "Young";
+            }
+            else if (age < oldAgeThreshold)
+            {
+                return "Middle Age";
+            }
+            else
+            {
+                return "Old";
+            }
+        }
+
+        private bool checkValueFilledIn(TextBox textBox, Label label)
+        {
+            if (textBox.Text == string.Empty)
+            {
+                textBox.BackColor = Color.Pink;
+                label.ForeColor = Color.Red;
+                textBox.Focus();
+                return false;
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                label.ForeColor = Color.Black;
+                return true;
+            }
+        }
+        
+        private bool checkValueFilledIn(ComboBox comboBox, Label label)
+        {
+            if (comboBox.Text == string.Empty)
+            {
+                comboBox.BackColor = Color.Pink;
+                label.ForeColor = Color.Red;
+                comboBox.Focus();
+                return false;
+            }
+            else
+            {
+                comboBox.BackColor = Color.White;
+                label.ForeColor = Color.Black;
+                return true;
+            }
         }
     }
 }
